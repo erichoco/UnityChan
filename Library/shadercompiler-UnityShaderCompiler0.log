@@ -1,10 +1,22 @@
 Base path: /Applications/Unity/Unity.app/Contents
 Cmd: getPlatforms
-Cmd: compileSnippet
-  api=15 type=0 insize=6658 outsize=8615 kw=DIRECTIONAL LIGHTMAP_OFF DIRLIGHTMAP_OFF DYNAMICLIGHTMAP_OFF pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING SHADER_API_DESKTOP ok=1
-Cmd: compileSnippet
-  api=15 type=1 insize=6658 outsize=0 kw=DIRECTIONAL LIGHTMAP_OFF DIRLIGHTMAP_OFF DYNAMICLIGHTMAP_OFF pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING SHADER_API_DESKTOP ok=1
-Cmd: compileSnippet
-  api=15 type=0 insize=3591 outsize=7564 kw=DIRECTIONAL pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING SHADER_API_DESKTOP ok=1
-Cmd: compileSnippet
-  api=15 type=1 insize=3591 outsize=0 kw=DIRECTIONAL pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING SHADER_API_DESKTOP ok=1
+Cmd: preprocess
+  insize=1095 outsize=1002 ok=1
+Cmd: preprocess
+  insize=766 outsize=709 ok=1
+Cmd: preprocess
+  insize=1107 outsize=1014 ok=1
+Cmd: preprocess
+  insize=755 outsize=698 ok=1
+Cmd: preprocess
+  insize=757 outsize=700 ok=1
+Cmd: preprocess
+  insize=1113 outsize=1020 ok=1
+Cmd: preprocess
+  insize=662 outsize=605 ok=1
+Cmd: preprocess
+  insize=870 outsize=776 ok=1
+Cmd: preprocess
+  insize=769 outsize=712 ok=1
+Cmd: preprocess
+  insize=1093 outsize=1000 ok=1
