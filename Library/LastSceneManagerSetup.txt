@@ -1,0 +1,4 @@
+sceneSetups:
+- path: Assets/GaussSense-Unity-Chan/unity-chan.unity
+  isLoaded: 1
+  isActive: 1
