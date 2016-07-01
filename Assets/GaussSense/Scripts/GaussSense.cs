@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using WebSocketSharp;
 using WebSocketSharp.Net;
 using SocketIO;
@@ -10,6 +11,7 @@ public class GaussSense : MonoBehaviour {
 	private GData northPoint;
 	private GData southPoint;
 	private GData bipolarMidpoint;
+	private List<int> tagID;
 
 	// Use this for initialization
 	void Start () {
@@ -27,11 +29,18 @@ public class GaussSense : MonoBehaviour {
 		socket.On("bipolarMidpoint", (SocketIOEvent e) => {
 			bipolarMidpoint = new GData(e.data["x"].n, e.data["y"].n, e.data["intensity"].n, e.data["angle"].n, e.data["pitch"].n);
 		});
+
+		socket.On("tagID", (SocketIOEvent e) => {
+			tagID = new List<int>();
+			for (int i = 0; i < e.data["id"].Count; i++) {
+				tagID.Add((int)e.data["id"][i].n);
+			}
+		});
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-		
+
 	}
 
 	public GData getNorthPoint() {
