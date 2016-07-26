@@ -53,6 +53,10 @@ public class GaussSense : MonoBehaviour {
 	public GData getBipolarMidpoint() {
 		return this.bipolarMidpoint;
 	}
+
+	public List<int> getTagID() {
+		return this.tagID;
+	}
 }
 
 

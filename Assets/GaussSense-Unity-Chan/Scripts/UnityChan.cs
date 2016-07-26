@@ -76,6 +76,8 @@ public class UnityChan : MonoBehaviour
 		{
 			actionBuffer--;
 		}
+		List<int> id = gs.getTagID();
+		for (int i = 0; i < id.Count; i++) Debug.Log(id[i]);
 	}
 
 	void OnGUI()
