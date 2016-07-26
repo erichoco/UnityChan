@@ -76,6 +76,8 @@ public class UnityChan : MonoBehaviour
 		{
 			actionBuffer--;
 		}
+		List<int> id = gs.getTagID();
+		for (int i = 0; i < id.Count; i++) Debug.Log(id[i]);
 	}
 
 	void OnGUI()
@@ -118,8 +120,8 @@ public class UnityChan : MonoBehaviour
 		{
 			bool actionExist = false;
 
-			// Debug.Log(n.getIntensity() + " " + s.getIntensity());
-			if (n.getIntensity() > 30 && s.getIntensity() > 30)
+			Debug.Log(n.getIntensity() + " " + s.getIntensity());
+			if (n.getIntensity() > 20 && s.getIntensity() > 20)
 			{
 				// Spinkick
 				if (!actionExist &&
@@ -252,20 +254,20 @@ public class UnityChan : MonoBehaviour
 				bool jumping = true;
 				for (int i = midpoints.Count-1; i > midpoints.Count-3; i--)
 				{
-					if (midpoints[i].getIntensity() - midpoints[i-1].getIntensity() > -10 ||
+					if (midpoints[i].getIntensity() - midpoints[i-1].getIntensity() > -1 ||
 						Mathf.Abs(midpoints[i].getX() - midpoints[i-1].getX()) > 0.35f ||
 						Mathf.Abs(midpoints[i].getY() - midpoints[i-1].getY()) > 0.35f)
 					{
-						// string debugMsg = "";
+						// string debugMsg1 = "";
 						// for (int j = midpoints.Count-1; j >= 0; j--)
 						// {
-						// 	debugMsg += midpoints[j].getX() + " ";
+						// 	debugMsg1 += midpoints[j].getX() + " ";
 						// }
-						// Debug.Log(debugMsg);
+						// Debug.Log(debugMsg1);
 						// Debug.Log(Mathf.Abs(midpoints[i].getX() - midpoints[i-1].getX()));
 						// Debug.Log(Mathf.Abs(midpoints[i].getY() - midpoints[i-1].getY()));
-						jumping = false;
-						break;
+						// jumping = false;
+						// break;
 					}
 				}
 				if (jumping)

@@ -1,37 +1,45 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using WebSocketSharp;
-using WebSocketSharp.Net;
-using SocketIO;
 
 public class GaussSense : MonoBehaviour {
-	private SocketIOComponent socket;
+	private WebSocket ws;
+	private bool wsConnected = false;
 	private GData northPoint;
 	private GData southPoint;
 	private GData bipolarMidpoint;
+	private List<int> tagID;
+
 
 	// Use this for initialization
 	void Start () {
-		GameObject io = GameObject.Find("SocketIO");
-		socket = io.GetComponent<SocketIOComponent>();
+		ws = new WebSocket("ws://localhost:5100");
 
-		socket.On("northPoint", (SocketIOEvent e) => {
-			northPoint = new GData(e.data["x"].n, e.data["y"].n, e.data["intensity"].n, e.data["angle"].n, e.data["pitch"].n);
-		});
-
-		socket.On("southPoint", (SocketIOEvent e) => {
-			southPoint = new GData(e.data["x"].n, e.data["y"].n, e.data["intensity"].n, e.data["angle"].n, e.data["pitch"].n);
-		});
-
-		socket.On("bipolarMidpoint", (SocketIOEvent e) => {
-			bipolarMidpoint = new GData(e.data["x"].n, e.data["y"].n, e.data["intensity"].n, e.data["angle"].n, e.data["pitch"].n);
-		});
+		ws.OnOpen += (object sender, System.EventArgs e) => {
+			wsConnected = true;
+		};
+		ws.OnClose += (object sender, CloseEventArgs e) => {
+			wsConnected = false;
+		};
+		ws.OnMessage += (object sender, MessageEventArgs e) => {
+			JSONObject data = new JSONObject(e.Data);
+			northPoint = new GData(data["northPoint"]["x"].n, data["northPoint"]["y"].n, data["northPoint"]["intensity"].n, data["northPoint"]["angle"].n, data["northPoint"]["pitch"].n);
+			southPoint = new GData(data["southPoint"]["x"].n, data["southPoint"]["y"].n, data["southPoint"]["intensity"].n, data["southPoint"]["angle"].n, data["southPoint"]["pitch"].n);
+			bipolarMidpoint = new GData(data["bipolarMidpoint"]["x"].n, data["bipolarMidpoint"]["y"].n, data["bipolarMidpoint"]["intensity"].n, data["bipolarMidpoint"]["angle"].n, data["bipolarMidpoint"]["pitch"].n);
+			tagID = new List<int>();
+			for (int i = 0; i < data["tagID"].Count; i++) {
+				tagID.Add((int)data["tagID"][i].n);
+			}
+		};
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-		
+		if (!wsConnected) {
+			ws.Connect();
+		}
 	}
 
 	public GData getNorthPoint() {
@@ -44,6 +52,10 @@ public class GaussSense : MonoBehaviour {
 
 	public GData getBipolarMidpoint() {
 		return this.bipolarMidpoint;
+	}
+
+	public List<int> getTagID() {
+		return this.tagID;
 	}
 }
 

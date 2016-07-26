@@ -19,7 +19,6 @@ public class GetBasicPoints : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		GData northPoint = gs.getNorthPoint();
-		Debug.Log (northPoint);
 		redPoint.transform.position = new Vector3 (-(northPoint.getX ()*6 - 3), northPoint.getY ()*6 - 3, 0.0f);
 
 		GData southPoint = gs.getSouthPoint();
@@ -28,6 +27,6 @@ public class GetBasicPoints : MonoBehaviour {
 		GData bipolarMidpoint = gs.getBipolarMidpoint();
 		midPoint.transform.position = new Vector3 (-(bipolarMidpoint.getX ()*6 - 3), bipolarMidpoint.getY ()*6 - 3, 0.0f);
 		midPoint.transform.rotation =  Quaternion.Euler(0.0f, 0.0f, -bipolarMidpoint.getAngle ()*Mathf.Rad2Deg);
-	
+
 	}
 }
